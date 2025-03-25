@@ -1,0 +1,5 @@
+RISC-V-Qemu-virt_GCC/build/
+.idea
+.vscode
+FreeRTOS/
+cmake-build-debug/
