@@ -8,6 +8,8 @@
 
 void log_event(uint32_t event_id, uint32_t data);
 
+void log_task_name(uint32_t task_id, char *task_name);
+
 
 #define traceBLOCKING_ON_QUEUE_PEEK(pxQueue) log_event(traceBLOCKING_ON_QUEUE_PEEKid, (uint32_t)(pxQueue))
 
@@ -103,13 +105,13 @@ void log_event(uint32_t event_id, uint32_t data);
 
 #define traceTAKE_MUTEX_RECURSIVE_FAILED(xMutex) log_event(47, (uint32_t)(xMutex))
 
-#define traceTASK_CREATE(pxNewTCB) log_event(traceTASK_CREATEid, (uint32_t)(pxNewTCB->uxTCBNumber))
+#define traceTASK_CREATE(pxNewTCB) log_event(traceTASK_CREATEid, (uint32_t)(pxNewTCB)); log_task_name((uint32_t)(pxNewTCB), pxNewTCB->pcTaskName)
 
 #define traceTASK_CREATE_FAILED(pxNewTCB) log_event(49, (uint32_t)(pxNewTCB))
 
 #define traceTASK_DELAY() log_event(50, 0)
 
-// #define traceTASK_DELAY_UNTIL() log_event(51, 0)
+#define traceTASK_DELAY_UNTIL(xTimeToWake) log_event(51, (uint32_t)(xTimeToWake))
 
 #define traceTASK_DELETE(xTask) log_event(52, (uint32_t)(xTask))
 
